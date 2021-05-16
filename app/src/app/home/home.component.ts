@@ -60,6 +60,7 @@ export class HomeComponent implements OnInit {
         this.getGraphData(transaction)
         this.getTotalOfNeto(transaction.neto)
       });
+      this.neto = this.neto + this.userData.deposit
       console.log("all transactions",this.allTransaction)
     })
   }
