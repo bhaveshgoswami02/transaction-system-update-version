@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* Importing Bootstrap SCSS file. */
+
+:root {
+    --primary: #D94444; 
+    --primary-contrast: #fff; 
+}
+
+p,h1,h2,h3,h4,h5,td {
+    font-family: 'Roboto', sans-serif!important;
+}
+
+.primary {
+    background-color: var(--primary)!important;
+    color: var(--primary-contrast)!important;
+}
+
+.btn-primary {
+    background-color: var(--primary)!important;
+    color: var(--primary-contrast)!important;
+    border-radius: 25px;
+    border: none!important;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary)!important;
+    color: var(--primary-contrast)!important;
+}
+
+.active {
+    background-color: var(--primary-contrast);
+    color: var(--primary);
+}

@@ -1,0 +1,88 @@
+<main class="col-md-12 ml-sm-auto col-lg-12 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h4>Manage Users</h4>
+    <button class="btn btn-primary border-0" (click)="showModal()">Add Users</button>
+  </div>
+  <ng-container *ngIf="!display">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
+      <nav aria-label="breadcrumb" class="w-100">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">All Users</li>
+        </ol>
+      </nav>
+    </div>
+
+    <div
+      class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center rounded mb-3 border-bottom bg-white p-3">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="primary">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of allData;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{data?.firstName}}</td>
+                <td>{{data?.lastName}}</td>
+                <td>{{data?.email}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </ng-container>
+  <br><br>
+
+  <p-dialog [(visible)]="display" [closable]="false">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 p-3 my-auto">
+          <form #formData="ngForm" (ngSubmit)="onSubmit(formData)">
+            <div class="row my-3">
+              <div class="col-md-12 text-center mb-3">
+                <h3 class="text-primary">Add New User</h3>
+              </div>
+              <div class="col-md-12 my-auto">
+                <label class="form-label">Email:</label>
+              </div>
+              <div class="col-md-12 my-auto">
+                <input type="email" name="email" class="form-control" ngModel>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col-md-12 my-auto">
+                <label class="form-label">First Name:</label>
+              </div>
+              <div class="col-md-12 my-auto">
+                <input type="text" name="firstName" class="form-control" ngModel required>
+              </div>
+            </div>
+            <div class="row my-3">
+              <div class="col-md-12 my-auto">
+                <label class="form-label">Last Name:</label>
+              </div>
+              <div class="col-md-12 my-auto">
+                <input type="text" name="lastName" class="form-control" ngModel required>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-5 mx-auto text-center">
+                <button type="submit" [disabled]="formData.invalid" class="btn btn-primary py-2 px-4 mx-auto">Submit</button>
+              </div>
+              <div class="col-5 mx-auto text-center">
+                <button type="button" (click)="hideModal()" class="btn btn-primary py-2 px-4 ml-4" style="background-color: #000!important;">Close</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+
+</main>

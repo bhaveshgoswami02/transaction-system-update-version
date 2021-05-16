@@ -1,0 +1,104 @@
+<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 bg-color" style="background-color: #F7F7F9;min-height: 100vh;">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h4>{{data ? 'Edit' : 'Add'}} Data</h4>
+  </div>
+
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3">
+    <nav aria-label="breadcrumb" class="w-100">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="'/'+dataService.collection">All Data</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{data ? 'Edit' : 'Add'}} Data</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-3 rounded bg-white">
+    <form #formData="ngForm" class="border p-3 rounded w-100" (ngSubmit)="onSubmit(formData)">
+      <div class="form-group">
+        <label for="file">Select Image</label> <br>
+        <span style="color:red;" *ngIf="message">{{message}}</span>
+        <input #file type="file" class="form-control" accept='image/*' name="file" (change)="preview(file.files)"
+          ngModel />
+        <img [src]="imgURL" width="20%" *ngIf="imgURL">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Enter Name</label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" [ngModel]="data?.name"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="time">Time</label>
+        <input type="text" class="form-control" name="time" id="time" placeholder="Enter Time" [ngModel]="data?.time"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="locationLink">Location Link</label>
+        <input type="url" class="form-control" name="locationLink" id="locationLink" placeholder="Enter Location Link"
+          [ngModel]="data?.locationLink" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email"
+          [ngModel]="data?.email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <input type="number" class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile"
+          [ngModel]="data?.mobile" required>
+      </div>
+
+      <div class="form-group">
+        <label class="mr-sm-2" for="services">Service</label>
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-10">
+            <div class="form-group d-flex">
+              <input type="text" class="form-control" name="title" #servicetitle placeholder="Add Services">
+              <button class="btn btn-success" type="button" (click)="addServices(servicetitle)">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="row my-3" *ngIf="services?.length>0">
+          <div class="col-lg-8 col-md-8 col-12 card">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Sr. No.</th>
+                    <th scope="col">List Of Services</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let serviceData of services;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{serviceData}}</td>
+                    <td><button type="button" (click)="onServiceDelete(i)" class="btn btn-danger"><i
+                          class="fa fa-trash-o" aria-hidden="true"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="mr-sm-2" for="availability">24 hour availability</label>
+        <select class="custom-select mr-sm-2" id="availability" name="availability" placeholder="availability"
+          [ngModel]="data?.availability">
+          <option selected>Choose...</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <button [disabled]="formData.invalid" class="btn btn-primary" type="submit">Save</button>
+    </form>
+  </div>
+  <br><br>
+</main>

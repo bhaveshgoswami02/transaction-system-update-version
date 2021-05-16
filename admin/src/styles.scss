@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
+/* Importing Bootstrap SCSS file. */
+
+:root {
+    --primary: #D94444; 
+    --primary-contrast: #fff; 
+}
+
+.primary {
+    background-color: var(--primary);
+    color: var(--primary-contrast);
+}
+
+.text-primary {
+    color: var(--primary)!important;
+}
+
+.btn-primary {
+    background-color: var(--primary)!important;
+    color: var(--primary-contrast)!important;
+    border: none!important;
+    border-radius: 25px;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-contrast)!important;
+    color: var(--primary)!important;
+}
+
+.active {
+    background-color: var(--primary-contrast);
+    color: var(--primary);
+}
+
+.p-calendar {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+}
+
+.p-dropdown {
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    display: inline-flex;
+    position: relative;
+    user-select: none;
+    width: 100%;
+}
+
+.form-control {
+    padding: 0px 10px!important;
+}
+
+.p-button {
+    color: #ffffff;
+    background: var(--primary)!important;
+    border: 1px solid var(--primary)!important;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 3px;
+}

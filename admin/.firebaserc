@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "transaction-system0223": {
+      "hosting": {
+        "admin": [
+          "transaction-system0223"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "transaction-system0223"
+  }
+}
