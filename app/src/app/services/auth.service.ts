@@ -43,7 +43,7 @@ export class AuthService {
       return res.user.uid
      }).catch(err=>{
       // code to generate a notification alert of wrong credentials
-      return err
+      this.common.showToast("error","",err)
     }).finally(()=>{
      this.common.stopLoader()
     })

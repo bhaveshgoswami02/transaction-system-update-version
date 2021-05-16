@@ -2,7 +2,7 @@
     <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">{{userData.firstName}} {{userData.lastName}}</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" (click)="logout()">Log out</a>
+            <a class="nav-link cursor-pointer" (click)="logout()">Log out</a>
         </li>
     </ul>
 </nav>
@@ -12,9 +12,9 @@
         <!-- Transactions Start -->
         <div class="row py-5">
             <div class="col-md-12 mb-3">
-                <h5>Deposit: ${{userData?.deposit}}</h5>
-                <h5>Withdraw: ${{userData?.withdraw}}</h5>
-                <h5>Balance: ${{neto - userData?.withdraw}}</h5>
+                <h5>Deposit: ${{userData?.deposit | number}}</h5>
+                <h5>Withdraw: ${{userData?.withdraw | number}}</h5>
+                <h5>Balance: ${{neto - userData?.withdraw | number : '1.2'}}</h5>
             </div>
             <div class="col-md-6">
                 <p-table [value]="allTransaction" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
