@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ManageTransactionsService } from '../services/manage-transactions.service';
 import { ManageUsersService } from '../services/manage-users.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -23,12 +24,17 @@ export class HomeComponent implements OnInit {
     { field: 'fee', header: 'Fee' },
     { field: 'neto', header: 'Neto' },
   ];
-  constructor(public transaction: ManageTransactionsService, public userService: ManageUsersService, public auth: AuthService) { }
+  currentMonth:any = ""
+  constructor(public transaction: ManageTransactionsService, public userService: ManageUsersService, public auth: AuthService,public datepipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getUserData()
     this.getAllTransaction()
-
+    let todayDate = new Date()
+    let docId:any = this.datepipe.transform(todayDate, 'yyyy-MM-dd');
+    this.currentMonth = docId.slice(0,7)
+    console.log(this.currentMonth)
+    this.onSelectDate(this.currentMonth)
     this.options = {
       title: {
         display: false,
@@ -58,7 +64,7 @@ export class HomeComponent implements OnInit {
     this.transaction.getAll().subscribe(res => {
       this.allTransaction = res
       this.allTransaction.forEach((transaction: any) => {
-        this.getGraphData(transaction)
+        // this.getGraphData(transaction)
         this.getTotalOfNeto(transaction.neto)
       });
       this.neto = this.neto + this.userData.deposit
@@ -67,10 +73,28 @@ export class HomeComponent implements OnInit {
   }
 
   onSelectDate(event: any) {
-    console.log(event.target.value)
     this.netoData = []
     this.allDate = []
-    let date = event.target.value.toString()
+    this.data = {
+      labels: this.allDate,
+      datasets: [
+        {
+          label: 'Neto',
+          data: this.netoData
+        },
+      ]
+    }
+    let date:string = ""
+    if(!event.target) {
+      date = this.currentMonth
+    }
+    else
+    {
+      date = event.target.value.toString()
+    }
+    if(!date) {
+      date = this.currentMonth
+    }
     console.log(date)
     this.transaction.getDataByMonth(date).subscribe(res => {
       console.log(res)
@@ -90,19 +114,15 @@ export class HomeComponent implements OnInit {
       console.log(this.allDate)
     }
     this.data = {
-      // labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       labels: this.allDate,
       datasets: [
         {
           label: 'Neto',
           data: this.netoData
         },
-        // {
-        //   label: 'Second Dataset',
-        //   data: [28, 48, 40, 19, 86, 27, 90]
-        // }
       ]
     }
+    console.log(this.data)
   }
 
   getTotalOfNeto(neto: number) {
@@ -114,11 +134,4 @@ export class HomeComponent implements OnInit {
     this.auth.logOut()
   }
 
-  getMonths(data: any) {
-    // this.allMonth = data.filter((a:any, b:any) => array.indexOf(a) === b)
-    var resultarray = data.uniq((data: any) => {
-      return data.id && data.name;
-    });
-    console.log(resultarray)
-  }
 }

@@ -19,6 +19,7 @@ import { ChartComponent } from './chart/chart.component';
 import {ChartModule} from 'primeng/chart';
 import {TableModule} from 'primeng/table';
 import {ButtonModule} from 'primeng/button';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import {ButtonModule} from 'primeng/button';
     TableModule,
     ButtonModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

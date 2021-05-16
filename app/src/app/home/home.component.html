@@ -50,7 +50,7 @@
                     <option *ngFor="let data of allTransaction" [value]="data.monthYear">{{data.id | date : 'mediumDate'}}
                     </option>
                 </select> -->
-                <input type="month" class="form-control" id="start" (change)="onSelectDate($event)" name="start" placeholder="MM/YYYY">
+                <input type="month" class="form-control" [ngModel]="currentMonth" id="start" (change)="onSelectDate($event)" name="start" placeholder="MM/YYYY">
             </div>
         </div>
         <div class="row mb-5">
