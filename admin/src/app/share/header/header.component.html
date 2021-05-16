@@ -1,6 +1,6 @@
 <div class="d-block d-md-none d-lg-none">
     <nav class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Hospital App</a>
+        <a class="navbar-brand primary col-md-3 col-lg-2 mr-0 px-3" href="#">Transaction App</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed border-white" type="button" data-toggle="collapse"
             data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars text-white" aria-hidden="true"></i>
@@ -44,13 +44,13 @@
 
 <!-- For Desktop -->
 <div class="d-none d-md-block d-lg-block">
-    <nav class="navbar sticky-top flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3">Transaction App</a>
-        <a class="navbar-brand cursor-pointer col-md-3 col-lg-2 mr-0 px-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Transactions</a>
-        <a class="navbar-brand cursor-pointer col-md-3 col-lg-2 mr-0 px-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/daily">Daily</a>
-        <a class="navbar-brand cursor-pointer col-md-3 col-lg-2 mr-0 px-3" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/users">Manage User</a>
+    <nav class="d-flex primary p-0 shadow">
+        <a class="mx-2" style="padding: 10px 20px;">Transaction App</a>
+        <a class="mx-2 custom-nav" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Transactions</a>
+        <a class="mx-2 custom-nav" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/daily">Daily</a>
+        <a class="mx-2 custom-nav" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/users">Manage User</a>
         <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
+            <li class="nav-item text-nowrap log-out">
                 <a class="nav-link cursor-pointer" (click)="logout()">Sign out</a>
             </li>
         </ul>

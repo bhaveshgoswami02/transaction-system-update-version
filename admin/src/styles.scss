@@ -7,6 +7,16 @@
     --primary-contrast: #fff; 
 }
 
+.bg-primary {
+    background-color: var(--primary)!important;
+    color: var(--primary-contrast)!important;
+}
+
+.bg-primary:hover {
+    background-color: var(--primary-contrast)!important;
+    color: var(--primary)!important;
+}
+
 .primary {
     background-color: var(--primary);
     color: var(--primary-contrast);
@@ -29,8 +39,8 @@
 }
 
 .active {
-    background-color: var(--primary-contrast);
-    color: var(--primary);
+    background-color: var(--primary-contrast)!important;
+    color: var(--primary)!important;
 }
 
 .p-calendar {
