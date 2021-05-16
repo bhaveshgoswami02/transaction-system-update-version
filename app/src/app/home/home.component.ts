@@ -13,21 +13,22 @@ export class HomeComponent implements OnInit {
   userData: any = { withdraw: 0, deposit: 0 }
   data: any
   options: any;
-  allDate:any = []
-  neto:number = 0
-  netoData:any = []
+  allDate: any = []
+  neto: number = 0
+  netoData: any = []
+  allMonth: any = []
   cols = [
     { field: 'id', header: 'Date' },
     { field: 'bruto', header: 'Bruto' },
     { field: 'fee', header: 'Fee' },
     { field: 'neto', header: 'Neto' },
   ];
-  constructor(public transaction: ManageTransactionsService, public userService: ManageUsersService,public auth:AuthService) { }
+  constructor(public transaction: ManageTransactionsService, public userService: ManageUsersService, public auth: AuthService) { }
 
   ngOnInit(): void {
     this.getUserData()
     this.getAllTransaction()
-    
+
     this.options = {
       title: {
         display: false,
@@ -43,7 +44,7 @@ export class HomeComponent implements OnInit {
   getUserData() {
     this.userService.getSingle().subscribe(res => {
       this.userData = res
-      console.log("user data",this.userData)
+      console.log("user data", this.userData)
       if (!this.userData.deposit) {
         this.userData.deposit = 0
       }
@@ -56,35 +57,35 @@ export class HomeComponent implements OnInit {
   getAllTransaction() {
     this.transaction.getAll().subscribe(res => {
       this.allTransaction = res
-      this.allTransaction.forEach((transaction:any) => {
+      this.allTransaction.forEach((transaction: any) => {
         this.getGraphData(transaction)
         this.getTotalOfNeto(transaction.neto)
       });
       this.neto = this.neto + this.userData.deposit
-      console.log("all transactions",this.allTransaction)
+      console.log("all transactions", this.allTransaction)
     })
   }
 
   onSelectDate(event: any) {
+    console.log(event.target.value)
     this.netoData = []
     this.allDate = []
-    console.log(event.target.value)
-    let date = event.target.value
+    let date = event.target.value.toString()
     console.log(date)
     this.transaction.getDataByMonth(date).subscribe(res => {
       console.log(res)
-      res.forEach(transaction=>{
+      res.forEach(transaction => {
         this.getGraphData(transaction)
       })
     })
   }
 
-  getGraphData(data:any) {
-    if(data.bruto) {
+  getGraphData(data: any) {
+    if (data.bruto) {
       this.netoData.push(data.neto)
       console.log(this.netoData)
     }
-    if(data.id) {
+    if (data.id) {
       this.allDate.push(data.id)
       console.log(this.allDate)
     }
@@ -104,13 +105,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  getTotalOfNeto(neto:number) {
+  getTotalOfNeto(neto: number) {
     this.neto = this.neto + neto
-    console.log("total neto",this.neto)
+    console.log("total neto", this.neto)
   }
 
-  logout(){
+  logout() {
     this.auth.logOut()
   }
 
+  getMonths(data: any) {
+    // this.allMonth = data.filter((a:any, b:any) => array.indexOf(a) === b)
+    var resultarray = data.uniq((data: any) => {
+      return data.id && data.name;
+    });
+    console.log(resultarray)
+  }
 }

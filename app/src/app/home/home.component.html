@@ -45,11 +45,12 @@
         <div class="row">
             <div class="col-md-2">
                 <h3>Select Date</h3>
-                <select class="form-control" (change)="onSelectDate($event)">
+                <!-- <select class="form-control" (change)="onSelectDate($event)">
                     <option selected>Select Date</option>
                     <option *ngFor="let data of allTransaction" [value]="data.monthYear">{{data.id | date : 'mediumDate'}}
                     </option>
-                </select>
+                </select> -->
+                <input type="month" class="form-control" id="start" (change)="onSelectDate($event)" name="start" placeholder="MM/YYYY">
             </div>
         </div>
         <div class="row mb-5">
