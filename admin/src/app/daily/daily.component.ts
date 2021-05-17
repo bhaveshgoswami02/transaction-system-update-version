@@ -39,8 +39,9 @@ export class DailyComponent implements OnInit {
     this.allUsers.forEach((user:any)=>{
       if(user.deposit) {
         let bruto = user.deposit * data.value.value/100
-        let neto = bruto - data.value.fee/100
-        let newData = {date:data.value.date,bruto:bruto,neto:neto,fee:data.value.fee,monthYear:monthYear}
+        let feeIntoNumber = bruto/data.value.fee
+        let neto = bruto - feeIntoNumber
+        let newData = {date:data.value.date,bruto:bruto,neto:neto,fee:feeIntoNumber,monthYear:monthYear}
         this.dailyTransaction.add(newData,user.id,docId)
         this.updateFee(data.value.fee)
       }
