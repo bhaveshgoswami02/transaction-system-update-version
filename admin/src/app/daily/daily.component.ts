@@ -14,6 +14,7 @@ import { ManageUsersService } from '../services/manage-users.service';
 export class DailyComponent implements OnInit {
   allUsers:any = []
   fee:number = 0
+  currentDate = new Date()
   constructor(public userService: ManageUsersService, public dailyTransaction: DailyTransactionsService, public common: CommonService,public datepipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -39,7 +40,7 @@ export class DailyComponent implements OnInit {
     this.allUsers.forEach((user:any)=>{
       if(user.deposit) {
         let bruto = user.deposit * data.value.value/100
-        let feeIntoNumber = bruto/data.value.fee
+        let feeIntoNumber = bruto * data.value.fee/100
         let neto = bruto - feeIntoNumber
         let newData = {date:data.value.date,bruto:bruto,neto:neto,fee:feeIntoNumber,monthYear:monthYear}
         this.dailyTransaction.add(newData,user.id,docId)
