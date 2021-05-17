@@ -24,7 +24,7 @@
                         <tr>
                             <th>Date</th>
                             <th>Bruto</th>
-                            <!-- <th>Fee</th> -->
+                            <th>Fee</th>
                             <th>Neto</th>
                         </tr>
                     </ng-template>
@@ -32,7 +32,7 @@
                         <tr>
                             <td>{{transaction.id}}</td>
                             <td>{{transaction.bruto | number : '1.2'}}</td>
-                            <!-- <td>{{transaction.fee}}</td> -->
+                            <td>{{transaction.fee | number : '1.2'}}</td>
                             <td>{{transaction.neto | number : '1.2'}}</td>
                         </tr>
                     </ng-template>
@@ -50,7 +50,8 @@
                     <option *ngFor="let data of allTransaction" [value]="data.monthYear">{{data.id | date : 'mediumDate'}}
                     </option>
                 </select> -->
-                <input type="month" class="form-control" [ngModel]="currentMonth" id="start" (change)="onSelectDate($event)" name="start" placeholder="MM/YYYY">
+                <input type="month" class="form-control" [ngModel]="currentMonth" id="start"
+                    (change)="onSelectDate($event)" name="start" placeholder="MM/YYYY">
             </div>
         </div>
         <div class="row mb-5">
