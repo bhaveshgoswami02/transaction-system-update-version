@@ -12,8 +12,8 @@
         <!-- Transactions Start -->
         <div class="row py-5">
             <div class="col-md-12 mb-3">
-                <h5>Deposit: ${{userData?.deposit | number}}</h5>
-                <h5>Withdraw: ${{userData?.withdraw | number}}</h5>
+                <h5>Deposit: ${{userData?.deposit | number : '1.2'}}</h5>
+                <h5>Withdraw: ${{userData?.withdraw | number : '1.2'}}</h5>
                 <h5>Balance: ${{neto - userData?.withdraw | number : '1.2'}}</h5>
             </div>
             <div class="col-md-6">
@@ -24,16 +24,16 @@
                         <tr>
                             <th>Date</th>
                             <th>Bruto</th>
-                            <th>Fee</th>
+                            <!-- <th>Fee</th> -->
                             <th>Neto</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-transaction>
                         <tr>
                             <td>{{transaction.id}}</td>
-                            <td>{{transaction.bruto}}</td>
-                            <td>{{transaction.fee}}</td>
-                            <td>{{transaction.neto}}</td>
+                            <td>{{transaction.bruto | number : '1.2'}}</td>
+                            <!-- <td>{{transaction.fee}}</td> -->
+                            <td>{{transaction.neto | number : '1.2'}}</td>
                         </tr>
                     </ng-template>
                 </p-table>
